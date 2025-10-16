@@ -46,16 +46,16 @@ def select_files(min_files=1):
 
     return files
 
-def read_samples_from_file(signal_file):
+def read_samples_from_file(signal_file, read_as="int"):
     with open(signal_file, "r") as file:
-        first_line = int(file.readline().strip())
-        second_line = int(file.readline().strip())
-        samples_number = int(file.readline().strip())
+        first_line = float(file.readline().strip()) if read_as=="float" else int(file.readline().strip())
+        second_line = float(file.readline().strip()) if read_as=="float" else int(file.readline().strip())
+        samples_number = float(file.readline().strip()) if read_as=="float" else int(file.readline().strip())
         samples = []
         for line in file:
             parts = line.strip().split()
             if len(parts) == 2:
-                samples.append([int(parts[0]), int(parts[1])])
+                samples.append([float(parts[0]), float(parts[1])]) if read_as=="float" else samples.append([int(parts[0]), int(parts[1])])
         samples = np.array(samples)
     return first_line, second_line, samples_number, samples
 

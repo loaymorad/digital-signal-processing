@@ -1,11 +1,12 @@
 import tkinter as tk
 from Labs.Lab1 import Lab1
 from Labs.Lab2 import Lab2
+from Labs.Lab3 import Lab3
 
 
-def label_list(label_text, buttons, col=0):
+
+def label_list(buttons, col=0):
     global row
-    tk.Label(window, text=label_text).grid(row=row, column=col, pady=(10,5))
     for text, cmd in buttons:
         row += 1
         tk.Button(window, text=text, width=20, command=cmd).grid(row=row, column=col, pady=5)
@@ -23,7 +24,6 @@ if __name__ == "__main__":
     lab1 = Lab1()
 
     label_list(
-        "lab 1",
         [
          ("Read Signal", lab1.read_signal), 
          ("Add Signals", lab1.add_signals), 
@@ -35,13 +35,22 @@ if __name__ == "__main__":
     lab2 = Lab2()
 
     label_list(
-        "lab 2",
         [
             ("Generate Signal", lab2.generate_signal), 
             ("substract Signal", lab2.substract_signals), 
             ("square Signal", lab2.square_signal), 
             ("normalize Signal", lab2.normalize_signal), 
             ("accumulation signal", lab2.accumulation_signal)
+        ]
+    )
+
+
+    # ========= Lab 3 =========
+    lab3 = Lab3()
+
+    label_list(
+        [
+            ("Quantize Signal", lab3.quantize_signal)
         ]
     )
 
